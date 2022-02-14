@@ -1,0 +1,463 @@
+> #Uber
+> logituber=glm(UBER ~ despesa_individual_faixaetaria_2 + despesa_individual_faixaetaria_3 +
++                 sexo + salario + despesa_individual_horastrab_2 + despesa_individual_horastrab_3 +
++                 despesa_individual_horastrab_4 +
++                 despesa_individual_cor_1 + despesa_individual_cor_2 + despesa_individual_cor_3 +
++                 despesa_individual_nempreg_2 + despesa_individual_nempreg_3 + despesa_individual_nempreg_4 + despesa_individual_tempdesloc_2 + 
++                 despesa_individual_tempdesloc_3 + despesa_individual_tempdesloc_4 + 
++                 despesa_individual_regiao_norte + despesa_individual_regiao_nordeste + 
++                 despesa_individual_regiao_norte + despesa_individual_regiao_sudeste +
++                 despesa_individual_regiao_sul,data=despesa_individual,family=binomial)
+> summary(logituber)
+
+Call:
+glm(formula = UBER ~ despesa_individual_faixaetaria_2 + despesa_individual_faixaetaria_3 + 
+    sexo + salario + despesa_individual_horastrab_2 + despesa_individual_horastrab_3 + 
+    despesa_individual_horastrab_4 + despesa_individual_cor_1 + 
+    despesa_individual_cor_2 + despesa_individual_cor_3 + despesa_individual_nempreg_2 + 
+    despesa_individual_nempreg_3 + despesa_individual_nempreg_4 + 
+    despesa_individual_tempdesloc_2 + despesa_individual_tempdesloc_3 + 
+    despesa_individual_tempdesloc_4 + despesa_individual_regiao_norte + 
+    despesa_individual_regiao_nordeste + despesa_individual_regiao_norte + 
+    despesa_individual_regiao_sudeste + despesa_individual_regiao_sul, 
+    family = binomial, data = despesa_individual)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-1.0253  -0.1732  -0.1348  -0.1046   3.5026  
+
+Coefficients:
+                                   Estimate Std. Error z value Pr(>|z|)    
+(Intercept)                        -5.94877    0.17920 -33.196  < 2e-16 ***
+despesa_individual_faixaetaria_2   -0.46720    0.08084  -5.780 7.48e-09 ***
+despesa_individual_faixaetaria_3   -1.05393    0.11605  -9.082  < 2e-16 ***
+sexo                               -0.78138    0.07002 -11.159  < 2e-16 ***
+salario                             0.26693    0.01870  14.271  < 2e-16 ***
+despesa_individual_horastrab_2     -0.15236    0.09523  -1.600 0.109626    
+despesa_individual_horastrab_3     -0.30832    0.10103  -3.052 0.002274 ** 
+despesa_individual_horastrab_4     -0.28446    0.11233  -2.532 0.011331 *  
+despesa_individual_cor_1            0.43210    0.07623   5.668 1.44e-08 ***
+despesa_individual_cor_2            0.26362    0.11049   2.386 0.017037 *  
+despesa_individual_cor_3            0.66144    0.28075   2.356 0.018475 *  
+despesa_individual_nempreg_2        0.29811    0.10055   2.965 0.003028 ** 
+despesa_individual_nempreg_3        0.48276    0.20192   2.391 0.016809 *  
+despesa_individual_nempreg_4        0.47630    0.40404   1.179 0.238454    
+despesa_individual_tempdesloc_2     0.24008    0.08800   2.728 0.006368 ** 
+despesa_individual_tempdesloc_3     0.70920    0.10132   6.999 2.57e-12 ***
+despesa_individual_tempdesloc_4     0.65675    0.12253   5.360 8.32e-08 ***
+despesa_individual_regiao_norte    -0.49549    0.14498  -3.418 0.000632 ***
+despesa_individual_regiao_nordeste  0.22921    0.09683   2.367 0.017930 *  
+despesa_individual_regiao_sudeste   0.12257    0.10332   1.186 0.235502    
+despesa_individual_regiao_sul      -0.14107    0.12158  -1.160 0.245935    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 9980.8  on 75789  degrees of freedom
+Residual deviance: 9407.3  on 75769  degrees of freedom
+  (52066 observations deleted due to missingness)
+AIC: 9449.3
+
+Number of Fisher Scoring iterations: 8
+
+> 
+> ## odds ratios only
+> #exp(coef(logituber))
+> 
+> ## odds ratios and 95% CI
+> exp(cbind(OR = coef(logituber), confint(logituber)))
+Waiting for profiling to be done...
+                                            OR       2.5 %      97.5 %
+(Intercept)                        0.002609047 0.001833915 0.003703327
+despesa_individual_faixaetaria_2   0.626753168 0.535746954 0.735601339
+despesa_individual_faixaetaria_3   0.348566646 0.276908609 0.436611730
+sexo                               0.457772756 0.398794025 0.524800949
+salario                            1.305953533 1.258106807 1.353926183
+despesa_individual_horastrab_2     0.858677642 0.712656595 1.035384704
+despesa_individual_horastrab_3     0.734680423 0.602476503 0.895450323
+despesa_individual_horastrab_4     0.752417174 0.603477570 0.937481570
+despesa_individual_cor_1           1.540491212 1.326891010 1.789174663
+despesa_individual_cor_2           1.301629073 1.043902646 1.610431444
+despesa_individual_cor_3           1.937571034 1.066925965 3.232676202
+despesa_individual_nempreg_2       1.347314310 1.103874660 1.637305469
+despesa_individual_nempreg_3       1.620541045 1.073067611 2.372707836
+despesa_individual_nempreg_4       1.610108537 0.663925454 3.308527077
+despesa_individual_tempdesloc_2    1.271355825 1.071502257 1.513192023
+despesa_individual_tempdesloc_3    2.032363373 1.666269349 2.479492585
+despesa_individual_tempdesloc_4    1.928512851 1.512428474 2.446206935
+despesa_individual_regiao_norte    0.609270292 0.455912549 0.805574951
+despesa_individual_regiao_nordeste 1.257602083 1.041929286 1.523348317
+despesa_individual_regiao_sudeste  1.130400935 0.923939774 1.385722532
+despesa_individual_regiao_sul      0.868430781 0.683398870 1.101168730
+> 
+> 
+> #Taxi
+> logittaxi=glm(TAXI ~ despesa_individual_faixaetaria_2 + despesa_individual_faixaetaria_3 +
++                 sexo + salario + despesa_individual_horastrab_2 + despesa_individual_horastrab_3 +
++                 despesa_individual_horastrab_4 +
++                 despesa_individual_cor_1 + despesa_individual_cor_2 + despesa_individual_cor_3 +
++                 despesa_individual_nempreg_2 + despesa_individual_nempreg_3 + despesa_individual_nempreg_4 + despesa_individual_tempdesloc_2 + 
++                 despesa_individual_tempdesloc_3 + despesa_individual_tempdesloc_4 + 
++                 despesa_individual_regiao_norte + despesa_individual_regiao_nordeste + 
++                 despesa_individual_regiao_norte + despesa_individual_regiao_sudeste +
++                 despesa_individual_regiao_sul,data=despesa_individual,family=binomial)
+> summary(logittaxi)
+
+Call:
+glm(formula = TAXI ~ despesa_individual_faixaetaria_2 + despesa_individual_faixaetaria_3 + 
+    sexo + salario + despesa_individual_horastrab_2 + despesa_individual_horastrab_3 + 
+    despesa_individual_horastrab_4 + despesa_individual_cor_1 + 
+    despesa_individual_cor_2 + despesa_individual_cor_3 + despesa_individual_nempreg_2 + 
+    despesa_individual_nempreg_3 + despesa_individual_nempreg_4 + 
+    despesa_individual_tempdesloc_2 + despesa_individual_tempdesloc_3 + 
+    despesa_individual_tempdesloc_4 + despesa_individual_regiao_norte + 
+    despesa_individual_regiao_nordeste + despesa_individual_regiao_norte + 
+    despesa_individual_regiao_sudeste + despesa_individual_regiao_sul, 
+    family = binomial, data = despesa_individual)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-0.8129  -0.1688  -0.1254  -0.1042   3.5726  
+
+Coefficients:
+                                   Estimate Std. Error z value Pr(>|z|)    
+(Intercept)                        -6.44085    0.22347 -28.821  < 2e-16 ***
+despesa_individual_faixaetaria_2    0.03348    0.10699   0.313   0.7543    
+despesa_individual_faixaetaria_3    0.29210    0.11915   2.451   0.0142 *  
+sexo                               -0.92884    0.07671 -12.109  < 2e-16 ***
+salario                             0.20697    0.02235   9.262  < 2e-16 ***
+despesa_individual_horastrab_2     -0.16189    0.10064  -1.609   0.1077    
+despesa_individual_horastrab_3     -0.24211    0.10836  -2.234   0.0255 *  
+despesa_individual_horastrab_4     -0.08846    0.11585  -0.764   0.4451    
+despesa_individual_cor_1            0.01668    0.08200   0.203   0.8388    
+despesa_individual_cor_2           -0.18664    0.12740  -1.465   0.1429    
+despesa_individual_cor_3            0.15129    0.32539   0.465   0.6420    
+despesa_individual_nempreg_2        0.05014    0.11150   0.450   0.6530    
+despesa_individual_nempreg_3        0.13191    0.24631   0.536   0.5923    
+despesa_individual_nempreg_4        0.58084    0.43673   1.330   0.1835    
+despesa_individual_tempdesloc_2    -0.10257    0.08408  -1.220   0.2225    
+despesa_individual_tempdesloc_3     0.05203    0.11007   0.473   0.6364    
+despesa_individual_tempdesloc_4    -0.28679    0.15348  -1.869   0.0617 .  
+despesa_individual_regiao_norte     1.15160    0.15513   7.424 1.14e-13 ***
+despesa_individual_regiao_nordeste  1.14118    0.14068   8.112 4.99e-16 ***
+despesa_individual_regiao_sudeste   1.13874    0.14556   7.823 5.14e-15 ***
+despesa_individual_regiao_sul       0.34438    0.17787   1.936   0.0528 .  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 8764.1  on 75789  degrees of freedom
+Residual deviance: 8399.0  on 75769  degrees of freedom
+  (52066 observations deleted due to missingness)
+AIC: 8441
+
+Number of Fisher Scoring iterations: 8
+
+> 
+> ## odds ratios only
+> #exp(coef(logituber))
+> ## odds ratios and 95% CI
+> exp(cbind(OR = coef(logittaxi), confint(logittaxi)))
+Waiting for profiling to be done...
+                                            OR       2.5 %     97.5 %
+(Intercept)                        0.001595052 0.001025663 0.00246475
+despesa_individual_faixaetaria_2   1.034051109 0.841797314 1.28092767
+despesa_individual_faixaetaria_3   1.339231488 1.062817240 1.69635082
+sexo                               0.395012919 0.339534594 0.45869187
+salario                            1.229944986 1.175940127 1.28373088
+despesa_individual_horastrab_2     0.850536046 0.698153011 1.03605807
+despesa_individual_horastrab_3     0.784967378 0.634095209 0.96999386
+despesa_individual_horastrab_4     0.915335674 0.728755772 1.14787680
+despesa_individual_cor_1           1.016823690 0.865309845 1.19347307
+despesa_individual_cor_2           0.829745889 0.641790207 1.05825695
+despesa_individual_cor_3           1.163329595 0.574400812 2.08446245
+despesa_individual_nempreg_2       1.051414371 0.842292946 1.30426298
+despesa_individual_nempreg_3       1.141001988 0.683561873 1.80331117
+despesa_individual_nempreg_4       1.787535162 0.679555796 3.87049230
+despesa_individual_tempdesloc_2    0.902512107 0.765792342 1.06491959
+despesa_individual_tempdesloc_3    1.053405550 0.846836149 1.30423342
+despesa_individual_tempdesloc_4    0.750668518 0.550174714 1.00532337
+despesa_individual_regiao_norte    3.163261732 2.345502818 4.31346713
+despesa_individual_regiao_nordeste 3.130454716 2.394242288 4.15991212
+despesa_individual_regiao_sudeste  3.122829927 2.363565950 4.18608946
+despesa_individual_regiao_sul      1.411119906 0.996164722 2.00362467
+> 
+> #ônibus urbano
+> logitonibus=glm(ONIBUS.URBANO ~ despesa_individual_faixaetaria_2 + despesa_individual_faixaetaria_3 +
++                   sexo + salario + despesa_individual_horastrab_2 + despesa_individual_horastrab_3 +
++                   despesa_individual_horastrab_4 +
++                   despesa_individual_cor_1 + despesa_individual_cor_2 + despesa_individual_cor_3 +
++                   despesa_individual_nempreg_2 + despesa_individual_nempreg_3 + despesa_individual_nempreg_4 + despesa_individual_tempdesloc_2 + 
++                   despesa_individual_tempdesloc_3 + despesa_individual_tempdesloc_4 + 
++                   despesa_individual_regiao_norte + despesa_individual_regiao_nordeste + 
++                   despesa_individual_regiao_norte + despesa_individual_regiao_sudeste +
++                   despesa_individual_regiao_sul,data=despesa_individual,family=binomial)
+> summary(logitonibus)
+
+Call:
+glm(formula = ONIBUS.URBANO ~ despesa_individual_faixaetaria_2 + 
+    despesa_individual_faixaetaria_3 + sexo + salario + despesa_individual_horastrab_2 + 
+    despesa_individual_horastrab_3 + despesa_individual_horastrab_4 + 
+    despesa_individual_cor_1 + despesa_individual_cor_2 + despesa_individual_cor_3 + 
+    despesa_individual_nempreg_2 + despesa_individual_nempreg_3 + 
+    despesa_individual_nempreg_4 + despesa_individual_tempdesloc_2 + 
+    despesa_individual_tempdesloc_3 + despesa_individual_tempdesloc_4 + 
+    despesa_individual_regiao_norte + despesa_individual_regiao_nordeste + 
+    despesa_individual_regiao_norte + despesa_individual_regiao_sudeste + 
+    despesa_individual_regiao_sul, family = binomial, data = despesa_individual)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-1.5367  -0.5541  -0.3913  -0.2874   2.7992  
+
+Coefficients:
+                                    Estimate Std. Error z value Pr(>|z|)    
+(Intercept)                        -1.677535   0.082264 -20.392  < 2e-16 ***
+despesa_individual_faixaetaria_2   -0.383356   0.029366 -13.055  < 2e-16 ***
+despesa_individual_faixaetaria_3   -0.386445   0.035551 -10.870  < 2e-16 ***
+sexo                               -0.997619   0.023510 -42.434  < 2e-16 ***
+salario                            -0.044369   0.011553  -3.841 0.000123 ***
+despesa_individual_horastrab_2      0.009926   0.033206   0.299 0.765009    
+despesa_individual_horastrab_3      0.170017   0.033428   5.086 3.66e-07 ***
+despesa_individual_horastrab_4      0.045834   0.039641   1.156 0.247592    
+despesa_individual_cor_1           -0.167331   0.026461  -6.324 2.55e-10 ***
+despesa_individual_cor_2            0.265547   0.034188   7.767 8.01e-15 ***
+despesa_individual_cor_3            0.167820   0.111677   1.503 0.132912    
+despesa_individual_nempreg_2        0.055047   0.036288   1.517 0.129275    
+despesa_individual_nempreg_3        0.146369   0.088513   1.654 0.098198 .  
+despesa_individual_nempreg_4       -0.119318   0.209992  -0.568 0.569898    
+despesa_individual_tempdesloc_2     0.459790   0.032167  14.294  < 2e-16 ***
+despesa_individual_tempdesloc_3     1.632499   0.035034  46.598  < 2e-16 ***
+despesa_individual_tempdesloc_4     1.929000   0.039238  49.161  < 2e-16 ***
+despesa_individual_regiao_norte    -0.313596   0.044659  -7.022 2.19e-12 ***
+despesa_individual_regiao_nordeste  0.171198   0.034042   5.029 4.93e-07 ***
+despesa_individual_regiao_sudeste   0.467077   0.034997  13.346  < 2e-16 ***
+despesa_individual_regiao_sul      -0.024258   0.043815  -0.554 0.579832    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 60142  on 75789  degrees of freedom
+Residual deviance: 52972  on 75769  degrees of freedom
+  (52066 observations deleted due to missingness)
+AIC: 53014
+
+Number of Fisher Scoring iterations: 5
+
+> 
+> ## odds ratios only
+> #exp(coef(logituber))
+> ## odds ratios and 95% CI
+> exp(cbind(OR = coef(logitonibus), confint(logitonibus)))
+Waiting for profiling to be done...
+                                          OR     2.5 %    97.5 %
+(Intercept)                        0.1868340 0.1590597 0.2195886
+despesa_individual_faixaetaria_2   0.6815702 0.6435235 0.7220354
+despesa_individual_faixaetaria_3   0.6794678 0.6337182 0.7284854
+sexo                               0.3687564 0.3521273 0.3861217
+salario                            0.9566012 0.9350586 0.9783761
+despesa_individual_horastrab_2     1.0099750 0.9463635 1.0779287
+despesa_individual_horastrab_3     1.1853246 1.1101955 1.2656388
+despesa_individual_horastrab_4     1.0469006 0.9685815 1.1314220
+despesa_individual_cor_1           0.8459200 0.8031239 0.8909043
+despesa_individual_cor_2           1.3041447 1.2193614 1.3942378
+despesa_individual_cor_3           1.1827232 0.9461492 1.4663300
+despesa_individual_nempreg_2       1.0565908 0.9838402 1.1342382
+despesa_individual_nempreg_3       1.1576238 0.9708178 1.3737059
+despesa_individual_nempreg_4       0.8875258 0.5777430 1.3191840
+despesa_individual_tempdesloc_2    1.5837408 1.4872607 1.6871450
+despesa_individual_tempdesloc_3    5.1166437 4.7778635 5.4812416
+despesa_individual_tempdesloc_4    6.8826222 6.3737544 7.4335964
+despesa_individual_regiao_norte    0.7308140 0.6694055 0.7974886
+despesa_individual_regiao_nordeste 1.1867256 1.1102905 1.2688002
+despesa_individual_regiao_sudeste  1.5953237 1.4897481 1.7088162
+despesa_individual_regiao_sul      0.9760343 0.8955911 1.0634267
+> 
+> 
+> #gasolina comum
+> logitgasolina=glm(GASOLINA.COMUM..COMBUSTIVEL.DE.VEICULO. ~ despesa_individual_faixaetaria_2 + despesa_individual_faixaetaria_3 +
++                     sexo + salario + despesa_individual_horastrab_2 + despesa_individual_horastrab_3 +
++                     despesa_individual_horastrab_4 +
++                     despesa_individual_cor_1 + despesa_individual_cor_2 + despesa_individual_cor_3 +
++                     despesa_individual_nempreg_2 + despesa_individual_nempreg_3 + despesa_individual_nempreg_4 + despesa_individual_tempdesloc_2 + 
++                     despesa_individual_tempdesloc_3 + despesa_individual_tempdesloc_4 + 
++                     despesa_individual_regiao_norte + despesa_individual_regiao_nordeste + 
++                     despesa_individual_regiao_norte + despesa_individual_regiao_sudeste +
++                     despesa_individual_regiao_sul,data=despesa_individual,family=binomial)
+> summary(logitgasolina)
+
+Call:
+glm(formula = GASOLINA.COMUM..COMBUSTIVEL.DE.VEICULO. ~ despesa_individual_faixaetaria_2 + 
+    despesa_individual_faixaetaria_3 + sexo + salario + despesa_individual_horastrab_2 + 
+    despesa_individual_horastrab_3 + despesa_individual_horastrab_4 + 
+    despesa_individual_cor_1 + despesa_individual_cor_2 + despesa_individual_cor_3 + 
+    despesa_individual_nempreg_2 + despesa_individual_nempreg_3 + 
+    despesa_individual_nempreg_4 + despesa_individual_tempdesloc_2 + 
+    despesa_individual_tempdesloc_3 + despesa_individual_tempdesloc_4 + 
+    despesa_individual_regiao_norte + despesa_individual_regiao_nordeste + 
+    despesa_individual_regiao_norte + despesa_individual_regiao_sudeste + 
+    despesa_individual_regiao_sul, family = binomial, data = despesa_individual)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-2.4178  -0.8295  -0.5725   1.1553   2.6757  
+
+Coefficients:
+                                    Estimate Std. Error z value Pr(>|z|)    
+(Intercept)                        -4.186140   0.066456 -62.991  < 2e-16 ***
+despesa_individual_faixaetaria_2    0.532857   0.026102  20.414  < 2e-16 ***
+despesa_individual_faixaetaria_3    0.236966   0.030111   7.870 3.55e-15 ***
+sexo                                1.141779   0.019413  58.814  < 2e-16 ***
+salario                             0.279768   0.008648  32.351  < 2e-16 ***
+despesa_individual_horastrab_2      0.123750   0.026853   4.608 4.06e-06 ***
+despesa_individual_horastrab_3      0.129565   0.027275   4.750 2.03e-06 ***
+despesa_individual_horastrab_4      0.113931   0.029924   3.807  0.00014 ***
+despesa_individual_cor_1            0.173578   0.019906   8.720  < 2e-16 ***
+despesa_individual_cor_2           -0.185267   0.030078  -6.159 7.30e-10 ***
+despesa_individual_cor_3           -0.078907   0.095159  -0.829  0.40699    
+despesa_individual_nempreg_2        0.070244   0.027168   2.586  0.00972 ** 
+despesa_individual_nempreg_3        0.045176   0.067186   0.672  0.50133    
+despesa_individual_nempreg_4        0.113101   0.146604   0.771  0.44043    
+despesa_individual_tempdesloc_2     0.065371   0.020203   3.236  0.00121 ** 
+despesa_individual_tempdesloc_3    -0.238559   0.028363  -8.411  < 2e-16 ***
+despesa_individual_tempdesloc_4    -0.569232   0.038052 -14.959  < 2e-16 ***
+despesa_individual_regiao_norte     0.096432   0.030058   3.208  0.00134 ** 
+despesa_individual_regiao_nordeste  0.015692   0.025499   0.615  0.53829    
+despesa_individual_regiao_sudeste  -0.317297   0.028214 -11.246  < 2e-16 ***
+despesa_individual_regiao_sul      -0.154346   0.030690  -5.029 4.93e-07 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 88090  on 75789  degrees of freedom
+Residual deviance: 80401  on 75769  degrees of freedom
+  (52066 observations deleted due to missingness)
+AIC: 80443
+
+Number of Fisher Scoring iterations: 4
+
+> 
+> ## odds ratios only
+> #exp(coef(logituber))
+> ## odds ratios and 95% CI
+> exp(cbind(OR = coef(logitgasolina), confint(logitgasolina)))
+Waiting for profiling to be done...
+                                           OR     2.5 %     97.5 %
+(Intercept)                        0.01520486 0.0133418 0.01731227
+despesa_individual_faixaetaria_2   1.70379237 1.6190506 1.79348837
+despesa_individual_faixaetaria_3   1.26739802 1.1948518 1.34454811
+sexo                               3.13233615 3.0156049 3.25405106
+salario                            1.32282224 1.3006813 1.34553226
+despesa_individual_horastrab_2     1.13173315 1.0737465 1.19293854
+despesa_individual_horastrab_3     1.13833361 1.0791132 1.20088364
+despesa_individual_horastrab_4     1.12067456 1.0568456 1.18837977
+despesa_individual_cor_1           1.18955374 1.1440303 1.23687639
+despesa_individual_cor_2           0.83088204 0.7831761 0.88118571
+despesa_individual_cor_3           0.92412580 0.7649617 1.11105574
+despesa_individual_nempreg_2       1.07276938 1.0170633 1.13135660
+despesa_individual_nempreg_3       1.04621187 0.9164569 1.19265224
+despesa_individual_nempreg_4       1.11974523 0.8374904 1.48883953
+despesa_individual_tempdesloc_2    1.06755484 1.0261303 1.11069834
+despesa_individual_tempdesloc_3    0.78776234 0.7450968 0.83272238
+despesa_individual_tempdesloc_4    0.56596012 0.5251079 0.60958347
+despesa_individual_regiao_norte    1.10123519 1.0382140 1.16804306
+despesa_individual_regiao_nordeste 1.01581586 0.9663315 1.06791564
+despesa_individual_regiao_sudeste  0.72811478 0.6889305 0.76950083
+despesa_individual_regiao_sul      0.85697503 0.8069215 0.91007948
+> 
+> 
+> #ônibus intermunicipal
+> logitonibusinter=glm(ONIBUS.INTERMUNICIPAL ~ despesa_individual_faixaetaria_2 + despesa_individual_faixaetaria_3 +
++                        sexo + salario + despesa_individual_horastrab_2 + despesa_individual_horastrab_3 +
++                        despesa_individual_horastrab_4 +
++                        despesa_individual_cor_1 + despesa_individual_cor_2 + despesa_individual_cor_3 +
++                        despesa_individual_nempreg_2 + despesa_individual_nempreg_3 + despesa_individual_nempreg_4 + despesa_individual_tempdesloc_2 + 
++                        despesa_individual_tempdesloc_3 + despesa_individual_tempdesloc_4 + 
++                        despesa_individual_regiao_norte + despesa_individual_regiao_nordeste + 
++                        despesa_individual_regiao_norte + despesa_individual_regiao_sudeste +
++                        despesa_individual_regiao_sul,data=despesa_individual,family=binomial)
+> summary(logitonibusinter)
+
+Call:
+glm(formula = ONIBUS.INTERMUNICIPAL ~ despesa_individual_faixaetaria_2 + 
+    despesa_individual_faixaetaria_3 + sexo + salario + despesa_individual_horastrab_2 + 
+    despesa_individual_horastrab_3 + despesa_individual_horastrab_4 + 
+    despesa_individual_cor_1 + despesa_individual_cor_2 + despesa_individual_cor_3 + 
+    despesa_individual_nempreg_2 + despesa_individual_nempreg_3 + 
+    despesa_individual_nempreg_4 + despesa_individual_tempdesloc_2 + 
+    despesa_individual_tempdesloc_3 + despesa_individual_tempdesloc_4 + 
+    despesa_individual_regiao_norte + despesa_individual_regiao_nordeste + 
+    despesa_individual_regiao_norte + despesa_individual_regiao_sudeste + 
+    despesa_individual_regiao_sul, family = binomial, data = despesa_individual)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-0.7141  -0.2220  -0.1813  -0.1509   3.2371  
+
+Coefficients:
+                                    Estimate Std. Error z value Pr(>|z|)    
+(Intercept)                        -3.531256   0.189805 -18.605  < 2e-16 ***
+despesa_individual_faixaetaria_2   -0.266526   0.066400  -4.014 5.97e-05 ***
+despesa_individual_faixaetaria_3   -0.097977   0.076759  -1.276 0.201803    
+sexo                               -0.489403   0.052036  -9.405  < 2e-16 ***
+salario                            -0.100234   0.026523  -3.779 0.000157 ***
+despesa_individual_horastrab_2      0.024592   0.072701   0.338 0.735166    
+despesa_individual_horastrab_3     -0.057791   0.075915  -0.761 0.446504    
+despesa_individual_horastrab_4     -0.193606   0.088610  -2.185 0.028894 *  
+despesa_individual_cor_1           -0.048808   0.059388  -0.822 0.411160    
+despesa_individual_cor_2            0.228961   0.075392   3.037 0.002390 ** 
+despesa_individual_cor_3           -0.075869   0.275187  -0.276 0.782777    
+despesa_individual_nempreg_2        0.259036   0.078511   3.299 0.000969 ***
+despesa_individual_nempreg_3        0.835044   0.161464   5.172 2.32e-07 ***
+despesa_individual_nempreg_4       -0.359209   0.588630  -0.610 0.541699    
+despesa_individual_tempdesloc_2    -0.001864   0.067595  -0.028 0.978004    
+despesa_individual_tempdesloc_3     0.395947   0.081651   4.849 1.24e-06 ***
+despesa_individual_tempdesloc_4     1.406001   0.075329  18.665  < 2e-16 ***
+despesa_individual_regiao_norte     0.206521   0.112089   1.842 0.065406 .  
+despesa_individual_regiao_nordeste  0.624647   0.089311   6.994 2.67e-12 ***
+despesa_individual_regiao_sudeste   0.909685   0.089853  10.124  < 2e-16 ***
+despesa_individual_regiao_sul       0.621670   0.106349   5.846 5.05e-09 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 15779  on 75789  degrees of freedom
+Residual deviance: 14991  on 75769  degrees of freedom
+  (52066 observations deleted due to missingness)
+AIC: 15033
+
+Number of Fisher Scoring iterations: 7
+
+> 
+> ## odds ratios only
+> #exp(coef(logituber))
+> ## odds ratios and 95% CI
+> exp(cbind(OR = coef(logitonibusinter), confint(logitonibusinter)))
+Waiting for profiling to be done...
+                                           OR      2.5 %     97.5 %
+(Intercept)                        0.02926813 0.02019361 0.04248626
+despesa_individual_faixaetaria_2   0.76603598 0.67327370 0.87350564
+despesa_individual_faixaetaria_3   0.90666952 0.78018818 1.05420303
+sexo                               0.61299239 0.55345679 0.67871025
+salario                            0.90462593 0.85826089 0.95220778
+despesa_individual_horastrab_2     1.02489699 0.88890095 1.18209629
+despesa_individual_horastrab_3     0.94384759 0.81332517 1.09531378
+despesa_individual_horastrab_4     0.82398263 0.69222877 0.97978234
+despesa_individual_cor_1           0.95236395 0.84745777 1.06963996
+despesa_individual_cor_2           1.25729326 1.08263982 1.45508302
+despesa_individual_cor_3           0.92693734 0.51539257 1.52811317
+despesa_individual_nempreg_2       1.29568106 1.10901748 1.50879286
+despesa_individual_nempreg_3       2.30491581 1.65995767 3.13003810
+despesa_individual_nempreg_4       0.69822822 0.17108211 1.86626457
+despesa_individual_tempdesloc_2    0.99813801 0.87470660 1.14017833
+despesa_individual_tempdesloc_3    1.48579020 1.26516664 1.74266190
+despesa_individual_tempdesloc_4    4.07960777 3.51968316 4.72918195
+despesa_individual_regiao_norte    1.22939393 0.98645198 1.53133899
+despesa_individual_regiao_nordeste 1.86758712 1.57142987 2.23066706
+despesa_individual_regiao_sudeste  2.48353887 2.08731335 2.96929320
+despesa_individual_regiao_sul      1.86203509 1.51256453 2.29559827
